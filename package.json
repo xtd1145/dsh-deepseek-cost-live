@@ -1,0 +1,51 @@
+{
+  "name": "dsh-deepseek-cost-live",
+  "version": "0.1.1",
+  "description": "Real-time DeepSeek API balance (official endpoint) and today's spend (local usage estimate) for the DSH web: composer dock strip + floating mini-widget + full settings dashboard. 余额(官方接口实时) + 今日花费(本机会话用量·按模型价格表估算)。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "balance",
+    "cost",
+    "usage",
+    "quota",
+    "cordis"
+  ],
+  "license": "MIT"
+}

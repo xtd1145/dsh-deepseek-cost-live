@@ -1,0 +1,12 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+const src = readFileSync('C:/Users/BI/Documents/ds/dsh-deepseek-cost-live/lib/client.js', 'utf8');
+let captured = null;
+const window = { __ModuleLoader__: { load: (o) => { captured = o; } } };
+const fn = new Function('window', 'Symbol', 'Object', src);
+fn(window, Symbol, Object);
+if (!captured) throw new Error('loader.load not called');
+const module = { exports: {} };
+const ret = captured.factory(() => ({}));
+const exportsObj = ret !== undefined ? ret : module.exports;
+const out = { typeofApply: typeof exportsObj.apply, typeofInject: typeof exportsObj.inject, typeofName: typeof exportsObj.name };
+writeFileSync('C:/Users/BI/Documents/ds/dsh-deepseek-cost-live/tests/client-contract.out.txt', JSON.stringify(out), 'utf8');
